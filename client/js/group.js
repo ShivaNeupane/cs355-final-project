@@ -13,6 +13,7 @@ const expensesList = document.querySelector("#expensesList");
 const balancesList = document.querySelector("#balancesList");
 const memberMessage = document.querySelector("#memberMessage");
 const expenseMessage = document.querySelector("#expenseMessage");
+const expensesListMessage = document.querySelector("#expensesListMessage");
 const logoutBtn = document.querySelector("#logoutBtn");
 
 if (!groupId) {
@@ -199,6 +200,7 @@ expenseForm.addEventListener("submit", async function (event) {
 
     if (response.ok) {
       expenseMessage.innerText = "Expense added successfully.";
+      expensesListMessage.innerText = "";
       expenseTitle.value = "";
       expenseAmount.value = "";
       await loadExpenses();
@@ -236,15 +238,16 @@ async function editExpense(expenseId, oldTitle, oldAmount) {
     const data = await response.json();
 
     if (response.ok) {
-      expenseMessage.innerText = "Expense updated!";
+      expensesListMessage.innerText = "Expense updated!";
+      expenseMessage.innerText = "";
       await loadExpenses();
       await loadBalances();
     } else {
-      expenseMessage.innerText = data.message;
+      expensesListMessage.innerText = data.message;
     }
   } catch (error) {
     console.error("Edit expense error:", error);
-    expenseMessage.innerText = "Something went wrong! Try again.";
+    expensesListMessage.innerText = "Something went wrong! Try again.";
   }
 }
 
@@ -266,15 +269,16 @@ async function deleteExpense(expenseId) {
     const data = await response.json();
 
     if (response.ok) {
-      expenseMessage.innerText = "Expense deleted!";
+      expensesListMessage.innerText = "Expense deleted!";
+      expenseMessage.innerText = "";
       await loadExpenses();
       await loadBalances();
     } else {
-      expenseMessage.innerText = data.message;
+      expensesListMessage.innerText = data.message;
     }
   } catch (error) {
     console.error("Delete expense error:", error);
-    expenseMessage.innerText = "Something went wrong! Try again.";
+    expensesListMessage.innerText = "Something went wrong! Try again.";
   }
 }
 
