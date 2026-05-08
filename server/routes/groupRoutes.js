@@ -10,6 +10,8 @@ const {
   addMemberToGroup
 } = require("../controllers/groupController");
 
+
+// Routes for CRUD methods
 router.post("/", authMiddleware, createGroup);
 router.get("/", authMiddleware, getUserGroups);
 router.get("/:id", authMiddleware, getGroupDetails);

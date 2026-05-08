@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0b0b0b;
+  --container: #151515;
+  --card: #202020;
+  --border: #333;
+  --text: #fff;
+  --muted: #b3b3b3;
+  --danger: #ff6b6b;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+/* Mobile first */
+.container {
+  width: 100%;
+  max-width: 430px;
+  margin: 24px auto;
+  background: var(--container);
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 18px 0 24px;
+}
+
+h2,
+h3 {
+  margin-top: 0;
+}
+
+input,
+button {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 10px auto;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+input {
+  background: #0f0f0f;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+input:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+button {
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #e5e5e5;
+}
+
+.danger-btn {
+  background: var(--danger);
+  color: #000;
+}
+
+.danger-btn:hover {
+  background: #ff8787;
+}
+
+a {
+  display: inline-block;
+  margin: 8px 0;
+  color: var(--text);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#message {
+  color: var(--danger);
+  text-align: center;
+}
+
+.card {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 16px;
+  margin: 14px auto;
+  border-radius: 14px;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+.expense-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.expense-actions button {
+  flex: 1;
+}
+
+.balance-card {
+  text-align: center;
+  padding: 16px;
+  font-weight: bold;
+}
+
+.balance-positive {
+  border-left: 4px solid #22c55e;
+  color: #22c55e;
+}
+
+.balance-negative {
+  border-left: 4px solid #ef4444;
+  color: #ef4444;
+}
+
+/* Bigger screens */
+@media (min-width: 768px) {
+  .container {
+    max-width: 900px;
+    padding: 32px;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .card {
+    transition: 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+  }
+}

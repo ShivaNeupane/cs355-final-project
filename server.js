@@ -1,14 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
-const pool = require("./server/config/db");
 
 const authRoutes = require("./server/routes/authRoutes");
 const groupRoutes = require("./server/routes/groupRoutes");
 const expenseRoutes = require("./server/routes/expenseRoutes");
-
-
 
 const app = express();
 
@@ -16,12 +14,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Serve frontend files
+app.use(express.static(path.join(__dirname, "client")));
+
+// Default login page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "pages", "login.html"));
+});
+
+// API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api", expenseRoutes);
-
-
-
 
 // Test route
 app.get("/api/test", (req, res) => {
@@ -29,24 +33,24 @@ app.get("/api/test", (req, res) => {
 });
 
 // Database test route
-app.get("/api/db-test", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT NOW()");
+// app.get("/api/db-test", async (req, res) => {
+//   try {
+//     const result = await pool.query("SELECT NOW()");
 
-    res.json({
-      message: "Database connected successfully!",
-      time: result.rows[0].now
-    });
-  } catch (error) {
-    console.error("Database connection error:", error);
+//     res.json({
+//       message: "Database connected successfully!",
+//       time: result.rows[0].now
+//     });
+//   } catch (error) {
+//     console.error("Database connection error:", error);
 
-    res.status(500).json({
-      message: "Database connection failed",
-      error: error.message,
-      code: error.code
-    });
-  }
-});
+//     res.status(500).json({
+//       message: "Database connection failed",
+//       error: error.message,
+//       code: error.code
+//     });
+//   }
+// });
 
 const PORT = process.env.PORT || 5000;
 

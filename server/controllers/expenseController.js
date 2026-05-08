@@ -59,7 +59,7 @@ const getGroupExpenses = async (req, res) => {
 
     const result = await pool.query(
       `SELECT e.id, e.title, e.amount, e.created_at,
-              u.id AS paid_by_id, u.name AS paid_by_name, u.email AS paid_by_email
+              u.id AS paid_by_id, u.name AS paid_by_name
        FROM expenses e
        JOIN users u ON e.paid_by = u.id
        WHERE e.group_id = $1
@@ -180,7 +180,7 @@ const getGroupBalances = async (req, res) => {
 
     // Get group members
     const membersResult = await pool.query(
-      `SELECT u.id, u.name, u.email
+      `SELECT u.id, u.name
        FROM users u
        JOIN group_members gm ON u.id = gm.user_id
        WHERE gm.group_id = $1`,
@@ -210,7 +210,6 @@ const getGroupBalances = async (req, res) => {
       balances[member.id] = {
         id: member.id,
         name: member.name,
-        email: member.email,
         paid: 0,
         share: 0,
         net: 0
@@ -289,7 +288,6 @@ const getGroupBalances = async (req, res) => {
       members: Object.values(balances).map(member => ({
         id: member.id,
         name: member.name,
-        email: member.email,
         paid: Math.round(member.paid * 100) / 100,
         share: Math.round(member.share * 100) / 100,
         net: Math.round(member.net * 100) / 100

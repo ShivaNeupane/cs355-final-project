@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      return res.status(400).json({ message: "Please provide name, email, and password" });
+      return res.status(400).json({ message: "Please Enter Your Name, Email, and Password" });
     }
 
     const existingUser = await pool.query(
@@ -76,7 +76,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "3h" }
     );
 
     res.json({

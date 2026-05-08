@@ -84,7 +84,7 @@ const getGroupDetails = async (req, res) => {
     );
 
     const membersResult = await pool.query(
-      `SELECT u.id, u.name, u.email
+      `SELECT u.id, u.name
        FROM users u
        JOIN group_members gm ON u.id = gm.user_id
        WHERE gm.group_id = $1

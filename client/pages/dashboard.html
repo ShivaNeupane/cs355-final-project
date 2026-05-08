@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - Expense Sharing App</title>
+
+  <script>
+    if (!localStorage.getItem("token")) {
+        window.location.href = "/pages/login.html";
+    }
+    </script>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard</h1>
+
+    <p id="welcomeMessage"></p>
+
+    <button id="logoutBtn">Logout</button>
+
+    <hr>
+
+    <h2>Create Group</h2>
+
+    <form id="groupForm">
+      <input type="text" id="groupName" placeholder="Group name" required>
+      <button type="submit">Create Group</button>
+    </form>
+
+    <p id="message"></p>
+
+    <hr>
+
+    <h2>Your Groups</h2>
+    <div id="groupsList"></div>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

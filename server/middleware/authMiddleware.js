@@ -1,9 +1,12 @@
 const jwt = require("jsonwebtoken");
 
+
+// Routes protection using JWT authentication
 const authMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
+    // Checks if token exits and starts with "Bearer `"
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ message: "No token provided" });
     }

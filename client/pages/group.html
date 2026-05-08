@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Group - Expense Sharing App</title>
+
+  <script>
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/pages/login.html";
+    }
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/pages/dashboard.html">Return to Dashboard</a>
+
+    <h1 id="groupName">Group</h1>
+
+    <button id="logoutBtn">Logout</button>
+
+    <hr>
+
+    <h2>Members</h2>
+    <div id="membersList">....</div>
+
+    <h2>Add Member</h2>
+    <form id="memberForm">
+    <input type="email" id="memberEmail" placeholder="Member email" required>
+    <button type="submit">Add Member</button>
+    </form>
+
+    <p id="memberMessage"></p>
+
+    <hr>
+
+    <h2>Add Expense</h2>
+
+    <form id="expenseForm">
+      <input type="text" id="expenseTitle" placeholder="Expense title" required>
+      <input type="number" id="expenseAmount" placeholder="Amount" step="0.01" required>
+      <button type="submit">Add Expense</button>
+    </form>
+
+    <p id="expenseMessage"></p>
+
+    <hr>
+
+    <h2>Expenses</h2>
+    <div id="expensesList"></div>
+
+    <hr>
+
+    <h2>Balances</h2>
+    <div id="balancesList"></div>
+
+  </div>
+
+  <script src="/js/group.js"></script>
+</body>
+</html>
