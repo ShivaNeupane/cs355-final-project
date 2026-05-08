@@ -14,17 +14,17 @@ const balancesList = document.querySelector("#balancesList");
 const memberMessage = document.querySelector("#memberMessage");
 const expenseMessage = document.querySelector("#expenseMessage");
 const expensesListMessage = document.querySelector("#expensesListMessage");
-const logoutBtn = document.querySelector("#logoutBtn");
+// const logoutBtn = document.querySelector("#logoutBtn");
 
 if (!groupId) {
   window.location.href = "/pages/dashboard.html";
 }
 
-logoutBtn.addEventListener("click", function () {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  window.location.href = "/pages/login.html";
-});
+// logoutBtn.addEventListener("click", function () {
+//   localStorage.removeItem("token");
+//   localStorage.removeItem("user");
+//   window.location.href = "/pages/login.html";
+// });
 
 async function loadGroupDetails() {
   try {
