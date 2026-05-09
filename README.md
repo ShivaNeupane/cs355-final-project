@@ -50,15 +50,27 @@ Users can create groups, add members, track shared expenses, and calculate balan
 ## Project Structure
 
 ```txt
-client/  css/  js/  pages/server/  config/  controllers/  middleware/  routes/
+client/
+  css/
+  js/
+  pages/
+
+server/
+  config/
+  controllers/
+  middleware/
+  routes/
 ```
+
+---
 
 ## Installation
 
 ### Clone the repository
 
 ```
-git clone <your-github-repo-url>cd expense-sharing-app
+git clone <your-github-repo-url>
+cd expense-sharing-app
 ```
 
 ### Install dependencies
@@ -67,15 +79,17 @@ git clone <your-github-repo-url>cd expense-sharing-app
 npm install
 ```
 
-### Create Environment Variabls
+### Create Environment Variables
 
-Create a .env file in the project root:
+Create a `.env` file in the project root:
 
 ```
-PORT=5000DATABASE_URL=your_database_urlJWT_SECRET=your_secret_key
+PORT=5000
+DATABASE_URL=your_database_url
+JWT_SECRET=your_secret_key
 ```
 
-### Run the Project
+### Run the project
 
 ```
 npm run dev
