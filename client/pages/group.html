@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Group - Expense Sharing App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Group</title>
 
   <script>
     if (!localStorage.getItem("token")) {
@@ -37,7 +41,7 @@
 
     <form id="expenseForm">
       <input type="text" id="expenseTitle" placeholder="Expense title" required>
-      <input type="number" id="expenseAmount" placeholder="Amount" step="0.01" required>
+      <input type="number" id="expenseAmount" placeholder="Amount" required>
       <button type="submit">Add Expense</button>
     </form>
 
@@ -61,5 +65,6 @@
   </div>
 
   <script src="/js/group.js"></script>
+  <script src="/js/pwa.js"></script>
 </body>
 </html>
