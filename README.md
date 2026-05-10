@@ -9,11 +9,11 @@ Users can create groups, add members, track shared expenses, and calculate balan
 -   Secure JWT authentication
 -   Password hashing using bcrypt
 -   Create and manage groups
--   Add group members by email
 -   Add, edit, and delete expenses
 -   Automatic balance calculation
 -   Responsive mobile-friendly UI
--   Protected frontend pages
+-   Progressive Web App (PWA) support
+-   Installable web application
 -   PostgreSQL database using Neon
 -   Deployed on Render
 
@@ -41,6 +41,11 @@ Users can create groups, add members, track shared expenses, and calculate balan
 -   JWT (jsonwebtoken)
 -   bcrypt
 
+### Progressive Web App (PWA)
+
+- Web App Manifest
+- Service Workers
+
 ### Deployment
 
 -   Render
@@ -54,6 +59,12 @@ client/
   css/
   js/
   pages/
+
+public/
+  icons/
+  js/
+  manifest.json
+  service-worker.js
 
 server/
   config/
