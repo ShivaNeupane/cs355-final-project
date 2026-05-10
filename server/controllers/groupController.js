@@ -157,9 +157,54 @@ const addMemberToGroup = async (req, res) => {
   }
 };
 
+// Delete the group by owner
+const deleteGroup = async (req, res) => {
+  const groupId = req.params.id;
+  const userId = req.user.id;
+
+  try {
+
+    const groupResult = await pool.query(
+      "SELECT * FROM groups WHERE id = $1",
+      [groupId]
+    );
+
+    if (groupResult.rows.length === 0) {
+      return res.status(404).json({
+        message: "Group not found."
+      });
+    }
+
+    const group = groupResult.rows[0];
+
+    if (group.created_by !== userId) {
+      return res.status(403).json({
+        message: "Only the group creator can delete this group."
+      });
+    }
+
+    await pool.query(
+      "DELETE FROM groups WHERE id = $1",
+      [groupId]
+    );
+
+    res.json({
+      message: "Group deleted successfully."
+    });
+
+  } catch (error) {
+    console.error("Delete group error:", error);
+
+    res.status(500).json({
+      message: "Server error while deleting group."
+    });
+  }
+};
+
 module.exports = {
   createGroup,
   getUserGroups,
   getGroupDetails,
-  addMemberToGroup
+  addMemberToGroup,
+  deleteGroup
 };

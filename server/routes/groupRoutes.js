@@ -7,7 +7,8 @@ const {
   createGroup,
   getUserGroups,
   getGroupDetails,
-  addMemberToGroup
+  addMemberToGroup,
+  deleteGroup
 } = require("../controllers/groupController");
 
 
@@ -16,5 +17,7 @@ router.post("/", authMiddleware, createGroup);
 router.get("/", authMiddleware, getUserGroups);
 router.get("/:id", authMiddleware, getGroupDetails);
 router.post("/:id/members", authMiddleware, addMemberToGroup);
+
+router.delete("/:id", authMiddleware, deleteGroup);
 
 module.exports = router;

@@ -14,6 +14,7 @@ const balancesList = document.querySelector("#balancesList");
 const memberMessage = document.querySelector("#memberMessage");
 const expenseMessage = document.querySelector("#expenseMessage");
 const expensesListMessage = document.querySelector("#expensesListMessage");
+const deleteGroupBtn = document.querySelector("#deleteGroupBtn");
 // const logoutBtn = document.querySelector("#logoutBtn");
 
 if (!groupId) {
@@ -281,6 +282,37 @@ async function deleteExpense(expenseId) {
     expensesListMessage.innerText = "Something went wrong! Try again.";
   }
 }
+
+deleteGroupBtn.addEventListener("click", async function () {
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this group? This will delete all expenses and members in this group."
+  );
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/groups/${groupId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Group deleted successfully.");
+      window.location.href = "/pages/dashboard.html";
+    } else {
+      message.innerText = data.message;
+    }
+  } catch (error) {
+    console.error("Delete group error:", error);
+    message.innerText = "Something went wrong while deleting the group.";
+  }
+});
 
 loadGroupDetails();
 loadExpenses();
